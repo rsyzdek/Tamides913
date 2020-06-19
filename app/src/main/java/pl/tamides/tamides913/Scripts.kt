@@ -11,6 +11,7 @@ class Scripts {
         var loginInput = inputFields[i];
         
         if (loginInput.name == "login") {
+            loginInput.value = "${Cfg.login}";
             break;
         }
     }
@@ -19,23 +20,20 @@ class Scripts {
         var passwordInput = inputFields[i];
     
         if (passwordInput.name == "pass") {
+            passwordInput.value = "${Cfg.password}";
             break;
         }
     }
-    
-    loginInput.value = "${Cfg.login}";
-    passwordInput.value = "${Cfg.password}";
     
     var buttons = document.getElementsByClassName('btn_enter');
     
     for (i = 0; i < buttons.length; i++) {
-        if (buttons[i].nodeName == "INPUT") {
-            break;
+        var logInButton = buttons[i]
+    
+        if (logInButton.nodeName == "INPUT") {
+            logInButton.click();
         }
     }
-    
-    var logInButton = buttons[i]
-    logInButton.click();
 }) ();
         """.trimIndent()
     }
