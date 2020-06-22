@@ -6,5 +6,6 @@ class Pages {
         val homePage = "https://www.lordswm.com/home.php"
         val mapPage = "https://www.lordswm.com/map.php"
         val inventoryPage = "https://www.lordswm.com/inventory.php"
+        val mercenaryPage = "https://www.lordswm.com/mercenary_guild.php"
     }
 }
