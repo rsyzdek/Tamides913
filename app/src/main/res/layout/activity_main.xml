@@ -6,6 +6,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:visibility="invisible"
         android:layout_height="match_parent">
 
         <WebView
@@ -17,4 +18,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <pl.tamides.tamides913.RoundedProgressBarWithTextInside
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </FrameLayout>
