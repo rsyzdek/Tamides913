@@ -10,7 +10,7 @@ import kotlin.math.min
 
 class RoundedProgressBarWithTextInside(context: Context, attributeSet: AttributeSet) :
     View(context, attributeSet) {
-    var text: String = "longABBCCGGj"
+    var text: String = "Text"
         set(value) {
             field = value
             invalidate()

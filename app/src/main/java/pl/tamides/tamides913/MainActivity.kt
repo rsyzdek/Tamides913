@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.webkit.WebView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import pl.com.salsoft.sqlitestudioremote.SQLiteStudioService
 import pl.tamides.tamides913.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -16,6 +17,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         views = ActivityMainBinding.inflate(layoutInflater)
         setContentView(views.root)
+
+        SQLiteStudioService.instance().start(this)
 
         views.browser.settings.javaScriptEnabled = true
         views.browser.settings.builtInZoomControls = true
@@ -31,5 +34,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         views.browser.loadUrl("https://www.lordswm.com/")
+
     }
 }
