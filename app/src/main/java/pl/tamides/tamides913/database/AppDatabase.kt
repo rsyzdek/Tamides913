@@ -2,18 +2,28 @@ package pl.tamides.tamides913.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import pl.tamides.tamides913.database.daos.Test1Dao
-import pl.tamides.tamides913.database.daos.Test2Dao
-import pl.tamides.tamides913.database.entities.Test1
-import pl.tamides.tamides913.database.entities.Test2
+import pl.tamides.tamides913.database.daos.*
+import pl.tamides.tamides913.database.entities.*
 
 @Database(
-    entities = [
-        Test1::class,
-        Test2::class
-    ], version = 1
+        entities = [
+            CombatLevel::class,
+            NecromancerLevel::class,
+            HunterGuildLevel::class,
+            LaborerGuildLevel::class,
+            RangerGuildLevel::class,
+            MercenaryGuildLevel::class,
+            WatcherGuildLevel::class,
+            LeaderGuildLevel::class
+        ], version = 1
 )
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun test1Dao(): Test1Dao
-    abstract fun test2Dao(): Test2Dao
+    abstract fun combatLevelDao(): CombatLevelDao
+    abstract fun necromancerLevelDao(): NecromancerLevelDao
+    abstract fun hunterGuildLevelDao(): HunterGuildLevelDao
+    abstract fun laborerGuildLevelDao(): LaborerGuildLevelDao
+    abstract fun rangerGuildLevelDao(): RangerGuildLevelDao
+    abstract fun mercenaryGuildLevelDao(): MercenaryGuildLevelDao
+    abstract fun watcherGuildLevelDao(): WatcherGuildLevelDao
+    abstract fun leaderGuildLevelDao(): LeaderGuildLevelDao
 }

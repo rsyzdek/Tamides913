@@ -9,7 +9,7 @@ import android.view.View
 import kotlin.math.min
 
 class RoundedProgressBarWithTextInside(context: Context, attributeSet: AttributeSet) :
-    View(context, attributeSet) {
+        View(context, attributeSet) {
     var text: String = "Text"
         set(value) {
             field = value
@@ -120,7 +120,7 @@ class RoundedProgressBarWithTextInside(context: Context, attributeSet: Attribute
         frameBottom = viewHeight - frameThikness
 
         textX =
-            (viewWidth - 2 * frameThikness - 2 * textPadding - textWidth) / 2 + frameThikness + textPadding
+                (viewWidth - 2 * frameThikness - 2 * textPadding - textWidth) / 2 + frameThikness + textPadding
         textY = viewHeight / 2 - (textPaint.ascent() + textPaint.descent()) / 2
     }
 
@@ -128,22 +128,22 @@ class RoundedProgressBarWithTextInside(context: Context, attributeSet: Attribute
         super.onDraw(canvas)
 
         canvas?.drawRoundRect(
-            progressLeft,
-            progressTop,
-            progressRight,
-            progressBottom,
-            textPadding,
-            textPadding,
-            progressPaint
+                progressLeft,
+                progressTop,
+                progressRight,
+                progressBottom,
+                textPadding,
+                textPadding,
+                progressPaint
         )
         canvas?.drawRoundRect(
-            frameLeft,
-            frameTop,
-            frameRight,
-            frameBottom,
-            textPadding,
-            textPadding,
-            framePaint
+                frameLeft,
+                frameTop,
+                frameRight,
+                frameBottom,
+                textPadding,
+                textPadding,
+                framePaint
         )
         canvas?.drawText(text, textX, textY, textPaint)
     }

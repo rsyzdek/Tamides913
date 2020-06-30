@@ -15,6 +15,6 @@ fun getScreenWidth(context: Context): Int {
 }
 
 fun db() = Room.databaseBuilder(
-    App.appContext,
-    AppDatabase::class.java, "Tamides913Database"
+        App.appContext,
+        AppDatabase::class.java, "Tamides913Database"
 ).build()
