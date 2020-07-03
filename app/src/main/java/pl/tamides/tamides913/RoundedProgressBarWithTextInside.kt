@@ -9,15 +9,17 @@ import android.view.View
 import kotlin.math.min
 
 class RoundedProgressBarWithTextInside(context: Context, attributeSet: AttributeSet) :
-        View(context, attributeSet) {
+    View(context, attributeSet) {
     var text: String = "Text"
         set(value) {
             field = value
+            calculateDimensions()
             invalidate()
         }
     var progress: Int = 35
         set(value) {
             field = value
+            calculateDimensions()
             invalidate()
         }
 
@@ -37,6 +39,7 @@ class RoundedProgressBarWithTextInside(context: Context, attributeSet: Attribute
     private var textWidth = 0f
     private var textX = 0f
     private var textY = 0f
+    private var progressBackgroundPaint: Paint
     private var progressPaint: Paint
     private var progressLeft = 0f
     private var progressTop = 0f
@@ -46,6 +49,10 @@ class RoundedProgressBarWithTextInside(context: Context, attributeSet: Attribute
     init {
         val resources = context.resources
         val blackColor = resources.getColor(R.color.black, null)
+
+        progressBackgroundPaint = Paint(ANTI_ALIAS_FLAG).apply {
+            color = resources.getColor(R.color.white, null)
+        }
 
         progressPaint = Paint(ANTI_ALIAS_FLAG).apply {
             color = resources.getColor(R.color.green, null)
@@ -64,11 +71,6 @@ class RoundedProgressBarWithTextInside(context: Context, attributeSet: Attribute
             color = blackColor
             textSize = textHeight
         }
-
-        textWidth = textPaint.measureText(text)
-
-        minViewWidth = (2 * frameThikness + 2 * textPadding + textWidth).toInt()
-        minViewHeight = (2 * frameThikness + 2 * textPadding + textHeight).toInt()
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -109,6 +111,48 @@ class RoundedProgressBarWithTextInside(context: Context, attributeSet: Attribute
         viewWidth = w.toFloat()
         viewHeight = h.toFloat()
 
+        calculateDimensions()
+    }
+
+    override fun onDraw(canvas: Canvas?) {
+        super.onDraw(canvas)
+
+        canvas?.drawRoundRect(
+            frameLeft,
+            frameTop,
+            frameRight,
+            frameBottom,
+            textPadding,
+            textPadding,
+            progressBackgroundPaint
+        )
+        canvas?.drawRoundRect(
+            progressLeft,
+            progressTop,
+            progressRight,
+            progressBottom,
+            textPadding,
+            textPadding,
+            progressPaint
+        )
+        canvas?.drawRoundRect(
+            frameLeft,
+            frameTop,
+            frameRight,
+            frameBottom,
+            textPadding,
+            textPadding,
+            framePaint
+        )
+        canvas?.drawText(text, textX, textY, textPaint)
+    }
+
+    private fun calculateDimensions() {
+        textWidth = textPaint.measureText(text)
+
+        minViewWidth = (2 * frameThikness + 2 * textPadding + textWidth).toInt()
+        minViewHeight = (2 * frameThikness + 2 * textPadding + textHeight).toInt()
+
         progressLeft = frameThikness
         progressTop = frameThikness
         progressRight = (viewWidth - frameThikness) * progress / 100
@@ -120,31 +164,7 @@ class RoundedProgressBarWithTextInside(context: Context, attributeSet: Attribute
         frameBottom = viewHeight - frameThikness
 
         textX =
-                (viewWidth - 2 * frameThikness - 2 * textPadding - textWidth) / 2 + frameThikness + textPadding
+            (viewWidth - 2 * frameThikness - 2 * textPadding - textWidth) / 2 + frameThikness + textPadding
         textY = viewHeight / 2 - (textPaint.ascent() + textPaint.descent()) / 2
-    }
-
-    override fun onDraw(canvas: Canvas?) {
-        super.onDraw(canvas)
-
-        canvas?.drawRoundRect(
-                progressLeft,
-                progressTop,
-                progressRight,
-                progressBottom,
-                textPadding,
-                textPadding,
-                progressPaint
-        )
-        canvas?.drawRoundRect(
-                frameLeft,
-                frameTop,
-                frameRight,
-                frameBottom,
-                textPadding,
-                textPadding,
-                framePaint
-        )
-        canvas?.drawText(text, textX, textY, textPaint)
     }
 }

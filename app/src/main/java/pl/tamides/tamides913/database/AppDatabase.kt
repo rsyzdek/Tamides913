@@ -6,16 +6,16 @@ import pl.tamides.tamides913.database.daos.*
 import pl.tamides.tamides913.database.entities.*
 
 @Database(
-        entities = [
-            CombatLevel::class,
-            NecromancerLevel::class,
-            HunterGuildLevel::class,
-            LaborerGuildLevel::class,
-            RangerGuildLevel::class,
-            MercenaryGuildLevel::class,
-            WatcherGuildLevel::class,
-            LeaderGuildLevel::class
-        ], version = 1
+    entities = [
+        CombatLevel::class,
+        NecromancerLevel::class,
+        HunterGuildLevel::class,
+        LaborerGuildLevel::class,
+        RangerGuildLevel::class,
+        MercenaryGuildLevel::class,
+        WatcherGuildLevel::class,
+        LeaderGuildLevel::class
+    ], version = 1
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun combatLevelDao(): CombatLevelDao

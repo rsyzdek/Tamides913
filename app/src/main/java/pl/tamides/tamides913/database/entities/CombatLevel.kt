@@ -17,5 +17,5 @@ class CombatLevel {
 
     @PrimaryKey
     @ColumnInfo(name = "CreationDate")
-    var creationDate: String? = null
+    var creationDate: String = ""
 }
